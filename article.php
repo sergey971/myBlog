@@ -15,7 +15,7 @@
             <h3><?=$res['title'];?></h3>
             <p><?=$res['text'];?></p>
             <em>Дата публикации: <?=$res['pubdate'];?></em><br>
-            <em>Автор: <a href="#"><?=$res['author'];?></a></em><br>
+            <em>Автор: <a href="/about.php"><?=$res['author'];?></a></em><br>
             <?php
             endwhile;
             ?>

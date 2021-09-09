@@ -1,5 +1,4 @@
 <?php
-error_reporting(E_ALL);
 require_once "../connect/connect.php";
 
 $login = mysqli_real_escape_string($connect, trim($_POST['login']));
@@ -9,7 +8,7 @@ $hash = 'BNksda87TG@Hkhdbsak73fgdah';
 $password = md5($password . $hash);
 
 
-$query = $connect -> query("SELECT * FROM `users` WHERE `login` = '$login' AND `password` = '$password'");
+$query = $connect -> query("SELECT * FROM `users` WHERE `login` = 'Murin Sergey' AND `password` = 'murin336417'");
 
 $error = '';
 

@@ -3,7 +3,7 @@
     <div class="p-4 text-center">
 
         <h4 class="font-italic"><img src="/image/m_sof-ila.png" alt=""></h4>
-        <p class="mb-8">Данный блог является практической формой полученных знаний самостоятелым изучением PHP</p>
+        <p style="color:yellow;" class="mb-8">Copyright © 2014-<?php echo date("Y"); ?> Все права защищены.</p>
 
     </div>
 
@@ -16,7 +16,8 @@
 <footer class="blog-footer">
 
     <p class="text-center">
-        <a href="#">Наверх</a>
+        <a style="color:yellow;" href="#">Наверх</a>
+        
     </p>
 </footer><script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->

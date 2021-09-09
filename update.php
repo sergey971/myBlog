@@ -1,47 +1,65 @@
-<?php
-error_reporting(E_ALL);
-include_once "./parts/header.php";
-include_once "./connect/connect.php";
-
-
-
-$id = $_GET['id'];
-
-$query = $connect->query("SELECT * FROM articles WHERE id = '$id'");
-$res = mysqli_fetch_assoc($query);
-
-
-
-?>
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update</title>
+    <title>Sof-Ila</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+    <style> textarea { resize: none; height: 100px } </style>
 </head>
-
 <body>
-    <div class="container">
-        <form class="mt-4" action="code/update.php" method="POST">
-            <input type="hidden" name="id" value="<?= $id['id'] ?>">
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label"></label>
-                <input type="text" name="title" value="<?= $res['title'] ?>" class="form-control" id="exampleFormControlInput1">
-            </div>
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label"></label>
-                <input type="text" name="intro" value="<?= $res['intro'] ?>" class="form-control" id="exampleFormControlInput1">
-            </div>
-            <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label"></label>
-                <textarea class="form-control" name="text" id="exampleFormControlTextarea1" rows="3"><?= $res['text'] ?></textarea>
-            </div>
-            <button class="btn btn-primary" type="submit">Редактировать</button>
-        </form>
-    </div>
-</body>
+    <? include_once "./parts/header.php" ?>
+    <? require "./connect/connect.php" ?>
+    <main class="mt-5 container">
+        <div class="text-center">
+            <span id="errorSpan" class="alert alert-danger" style="display:none;bottom:15px"></span>
+            <h1 class="text-center mt-3">Редактировать</h1>
+        </div>
+        <?php
+            $article_id = $_GET['id'];
+            $author = $_COOKIE['log'];
+            $query = $connect -> query("SELECT * FROM `articles` WHERE `id` = '$article_id' AND `author` = '$author'");
+            if (mysqli_num_rows($query) == 0):
+        ?><script>location.href = '/'</script><?php
+            endif;
+            while ($res = mysqli_fetch_assoc($query)):
+        ?>
+            <form class="mt-4">
+                <input type="text" name="title" id="title" placeholder="Введите заголовок" class="form-control mt-2" value="<?=$res['title'];?>">
+                <input type="text" name="intro" id="intro" placeholder="Введите интро" class="form-control mt-2" value="<?=$res['intro'];?>">
+                <textarea name="text" id="text" class="form-control mt-2" placeholder="Введите текст"><?=$res['text'];?></textarea>
+                <button class="btn btn-outline-primary mt-3" type="button" id="editBtn">Сохранить</button>
+            </form>
+        <?php
+            endwhile;
+        ?>
+    </main>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $("#editBtn").click(function () {
+            const title = $('#title').val()
+            const intro = $('#intro').val()
+            const text = $('#text').val()
+
+            $.ajax({
+                url: '/code/update.php',
+                type: 'POST',
+                cache: false,
+                data: {title, intro, text},
+                dataType: 'html',
+                success: function (data) {
+                    if (data == 'ready') {
+                        $('#errorSpan').hide()
+                        location.href = '/'
+                    } else {
+                        $('#errorSpan').show()
+                        $('#errorSpan').text(data)
+                    }
+                }
+            })
+        })
+    </script>
+</body>
 </html>
-<? include_once "./parts/fotter.php"; ?>

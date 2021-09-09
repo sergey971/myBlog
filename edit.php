@@ -1,8 +1,5 @@
-<?php
-//error_reporting(E_ALL);
 
-?>
-
+<? error_reporting(E_ALL);?>
 <body>
 <?php include_once './parts/header.php'; ?>
 <?php if ($_COOKIE["log"] != ''): ?> <script>location.href = '/'</script> <? endif;?>
