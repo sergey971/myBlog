@@ -1,8 +1,11 @@
 <?php
+
     require "../connect/connect.php";
-    $title = $_POST['title'];
-    $intro = $_POST['intro'];
-    $text = $_POST['text'];
+    if(isset($_GET['id']) || isset($_POST['title']) || isset($_POST['intro']) || isset($_POST['text'])){
+    $id = mysqli_real_escape_string($connect, trim($_GET['id']));
+    $title = mysqli_real_escape_string($connect, trim($_POST['title']));
+    $intro = mysqli_real_escape_string($connect, trim($_POST['intro']));
+    $text = mysqli_real_escape_string($connect, trim($_POST['text']));
     
 
     $error = '';
@@ -17,3 +20,5 @@
         $connect -> query("UPDATE `articles` SET `title` = '$title', `intro` = '$intro', `text` = '$text' WHERE `articles`.`id` = '$id'");
         echo "ready";
     }
+
+}

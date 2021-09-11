@@ -9,8 +9,8 @@
     <style> textarea { resize: none; height: 100px } </style>
 </head>
 <body>
-    <? include_once "./parts/header.php" ?>
-    <? require "./connect/connect.php" ?>
+    <?= include_once "./parts/header.php"; ?>
+    <?= require "./connect/connect.php"; ?>
     <main class="mt-5 container">
         <div class="text-center">
             <span id="errorSpan" class="alert alert-danger" style="display:none;bottom:15px"></span>

@@ -1,9 +1,9 @@
-<? include_once "./parts/header.php"; ?>
-<? include_once "./connect/connect.php"; ?>
+<?= include_once "./parts/header.php"; ?>
+<?= include_once "./connect/connect.php"; ?>
 <?php
 
 if (!isset($_GET['page'])) $page = 1;
-else $page = htmlspecialchars($_GET['page']);
+else $page = mysqli_real_escape_string($connect, trim($_GET['page']));
 if (ctype_digit($page) === false) $page = 1;
 $travel = "travel";
 $count_query = $connect->query("SELECT COUNT(*) FROM $travel");

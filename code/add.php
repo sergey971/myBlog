@@ -1,9 +1,9 @@
 <?php
 require_once "../connect/connect.php";
 
-$title = $_POST['title'];
-$intro = $_POST['intro'];
-$text = $_POST['text'];
+$title = mysqli_real_escape_string($connect, trim($_POST['title']));
+$intro = mysqli_real_escape_string($connect,trim($_POST['intro']));
+$text = mysqli_real_escape_string($connect,trim($_POST['text']));
 $author = $_COOKIE['log'];
 
 $error = '';
