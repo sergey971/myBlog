@@ -17,9 +17,9 @@
             <h1 class="text-center mt-3">Редактировать</h1>
         </div>
         <?php
-            $article_id = $_GET['id'];
             $author = $_COOKIE['log'];
-            $query = $connect -> query("SELECT * FROM `articles` WHERE `id` = '$article_id' AND `author` = '$author'");
+            $id = $_GET['id'];
+            $query = $connect -> query("SELECT * FROM `articles` WHERE `id` = '$id' AND `author` = '$author'");
             if (mysqli_num_rows($query) == 0):
         ?><script>location.href = '/'</script><?php
             endif;

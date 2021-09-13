@@ -1,41 +1,71 @@
+<div class="container">
 <?php
 
+if(isset($_POST["name"]))
+{
+        if(isset($_POST["name"]))
+        {
+                $name = $_POST["name"];
+        }
+        if(isset($_POST["phone"]))
+        {
+                $phone= $_POST["phone"];
+        }
+        if(isset($_POST["email"]))
+        {
+                $email= $_POST["email"];
+        }
+        if(isset($_POST["body"]))
+        {
+                $body = $_POST["body"];
+        }
 
-if ($_POST['capcha'] != 10) {
-    header('location: ../message.php');
-    exit;
-}
+        if($name=="" or $phone=="" or $body=="" or $body=="")
+        { // Проверяем на заполненность всех полей.
+                echo "Пожалуйста, заполните все поля";
+        }
+        else
+        {
+                $ip=$_SERVER["REMOTE_ADDR"]; // Вычисляем ip пользователя
+                $brose=$_SERVER["HTTP_USER_AGENT"]; // Вычисляем браузер пользователя
+                $to = "murin.89@list.ru"; // Ваш email адрес
+                $subject = "Сообщение c сайта sof-ilablog.ru"; // тема письма
+                $headers .= "Content-Type: text/html;
+                ";
+                $headers .= ""; // Отправитель письма
+                $message = "
+                Имя: $name<br>
+                Телефоны: $phone<br>
+                Email: $email<br>
+                Текст: $body<br><br>
 
-if ($_POST['subject'] == 1) {
-    $subject = 'Тема письма';
-} elseif ($_POST['subject'] == 2) {
-    $subject = 'Вопрос о путешествии';
-} elseif ($_POST['subject'] == 3) {
-    $subject = 'Вопрос о проекте';
-} elseif ($_POST['subject'] == 4) {
-    $subject = 'Личный вопрос';
-} elseif ($_POST['subject'] == 5) {
-    $subject = 'Отзыв';
-} elseif ($_POST['subject'] == 6) {
-    $subject = 'Прочее';
-} else {
-    $subject = 'Тема письма';
-}
+                IP отправителя: $ip<br>
+                Браузер отправителя: $brose<br>
+                ";
 
-$to = "murin.89@list.ru";
-$from = trim($_POST['email']);
+                $send = mail($to, $subject, $message, $headers);
+                
+                if ($send == "true")
+                
+                {
+                    
+                    echo"Ваше сообщение отправлено. Я отвечу вам в ближайшее время.";
+                    echo "<br>";
 
-$message = htmlspecialchars($_POST['message']);
-$message = urldecode($message);
-$message = trim($_POST['message']);
+                    
+                    
+                    
 
-$headers = "From: $from" . "\r\n" .
-    "Reply-To: $from" . "\r\n" .
-    "X-Mailer: PHP/" . phpversion();
+                }
+                else
+                {
+                        echo "Не удалось отправить, попробуйте снова!";
+                }
+                
+            }
+        }
+        
 ?>
-<?php if (mail($to, $subject, $message, $headers)):?><? {
-    header('Location: ../message_answer.php'); ?>
-    <?
-} ?>
-<?endif?>
+<a href="/">На главную</a>
+</div>
 

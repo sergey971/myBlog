@@ -1,51 +1,60 @@
 <?php
 
-include_once "./parts/header.php";
+require_once "./parts/header.php";
 
 
 ?>
-<!doctype html>
-<html lang="ru">
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- <link rel="stylesheet" href="/css/style.css"> -->
-    <title>Обратная связь</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ваше сообщение</title>
 </head>
+<style>
+    textarea {
+        width: 50%;
+        height: 200px;
+        resize: none;
+    }
+</style>
 
 <body>
-    <form action="/code/sandmail.php" method="POST">
-        <div class="container">
-        <select name="subject" class="form-select" aria-label="Default select example">
-            <option disabled selected>Тема письма</option>
-            <option value="1">Вопрос о путешествии</option>
-            <option value="2">Вопрос о проекте</option>
-            <option value="3">Личный вопрос</option>
-            <option value="4">Отзыв</option>
-            <option value="5">Прочее</option>
-        </select>
-        <br>
-        <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Ввидите ваш email</label>
-            <input type="email" name="email" class="form-control" id="exampleFormControlInput1" placeholder="Email" required>
-        </div>
-        <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">Ваше сообщение</label>
-            <textarea class="form-control" name="message" id="exampleFormControlTextarea1" placeholder="Сообщение" rows="3"></textarea>
-        </div>
-        <img src="/image/capcha2.jpg">
-        <input type="number" name="capcha" class="form-control mt-2" placeholder="Ввидите ответ" maxlength="3" required><br>
-        <div class="col-auto">
-            <button type="submit"  class="btn btn-primary mb-3">Отправить письмо</button>
-        </div>
-        </div>
-    </form>
+    <div class="container">
+        <form name="MyForm" id="callbacks" action="" method="post">
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">@</span>
+                <input type="text" name="name" class="form-control" placeholder="Ваше Имя" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group mb-3">
+                <input type="number" name="phone" class="form-control" placeholder="Вашь телефон" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            <label for="basic-url" class="form-label">Ваша почта</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon3">Mail-Gmail-Rambler-Yandex</span>
+                <input type="email" name="email" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+            </div>
+            <div class="input-group">
+                <span class="input-group-text">Ваше сообщение</span>
+                <textarea name="body" class="form-control" aria-label="With textarea"></textarea>
+            </div>
+            <br>
+            <button id="submit" type="submit" name="done" class="btn btn-primary">Отправить</button>
+        <!-- <input id="submit" type="submit" name="done" /> -->
+        </form>
+    </div>
+    <div id="erconts" style="display: none">
+    </div>
 </body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src="/script.js"></script>
+
+
+</html>
+
 <?php
 include_once "./parts/fotter.php";
 ?>
-
-</html>

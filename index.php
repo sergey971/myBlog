@@ -1,14 +1,14 @@
 <?php
     
-    include_once "./connect/connect.php"; ?>
+    include_once "./connect/connect.php"; 
 
 
-<?php
 
-include_once "./parts/header.php";
+
+    require_once "./parts/header.php";
 
 if (!isset($_GET['page'])) $page = 1;
-else $page = htmlspecialchars($_GET['page']);
+else $page = mysqli_real_escape_string($connect, trim($_GET['page']));
 if (ctype_digit($page) === false) $page = 1;
 $articles = "articles";
 $count_query = $connect->query("SELECT COUNT(*) FROM $articles");
@@ -37,6 +37,7 @@ $length = ceil($count / $limit);
                             <li><a href="https://www.facebook.com/profile.php?id=100013433798944" target="_blank">Facebook</a></li>
                             <li><a href="https://vk.com/smurin2013" target="_blank">Vk</a></li>
                         </ol>
+                        
             </div>
             </aside>
         </div>
@@ -56,6 +57,7 @@ $length = ceil($count / $limit);
                 ?>
                 <?php
                 if ((int)$page > $length) $start = 0;
+
                 $query = $connect->query("SELECT * FROM `articles` ORDER BY `pubdate` DESC LIMIT $start, $limit"); ?>
                 <?php if (mysqli_num_rows($query) == 0) :
                 ?>

@@ -1,4 +1,5 @@
 <html>
+<title>Статья</title>
 <body>
 
 <?php include_once "./parts/header.php";?>

@@ -1,6 +1,6 @@
-<?= include_once "./parts/header.php"; ?>
-<?= include_once "./connect/connect.php"; ?>
 <?php
+include_once "./parts/header.php"; 
+include_once "./connect/connect.php"; 
 
 if (!isset($_GET['page'])) $page = 1;
 else $page = mysqli_real_escape_string($connect, trim($_GET['page']));
@@ -23,7 +23,7 @@ $length = ceil($count / $limit);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Путешествие</title>
 </head>
 
 <body>
@@ -49,11 +49,11 @@ $length = ceil($count / $limit);
                 while ($res = mysqli_fetch_assoc($query)) :
                 ?>
                     <div class="blog-post">
-                        <h2 class="blog-post-title"><?= $res['title']; ?></h2>
+                        <h2 style="color:#8D230F;" class="blog-post-title"><?= $res['title']; ?></h2>
                         <p class="lead my-3">
-                        <p><?= $res['intro']; ?></p>
+                        <p style="color: white;" ><?= $res['intro']; ?></p>
                         <p class="lead my-3">
-                        <p><?= mb_substr($res['text'], 0, 200, 'Utf-8') . '...' ?></p>
+                        <p style="color: #CD7213;"><?= mb_substr($res['text'], 0, 200, 'Utf-8') . '...' ?></p>
                         <p class="lead md=0"><a href="/travel_post.php?id=<?=$res['id'] ?>" class="text-black font-weight-bold">Продолжить чтение...</a></p><br>
                         <?php if ($_COOKIE["log"] = $_COOKIE["log"]) : ?>
                             <a href="?del=<?= $res['id']; ?>">Удалить</a>

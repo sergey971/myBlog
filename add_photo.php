@@ -1,12 +1,12 @@
-<?php
-include_once "./connect/connect.php";
-include_once "./parts/header.php";
+<!-- <?php
+// include_once "./connect/connect.php";
+// include_once "./parts/header.php";
 
-if (isset($_FILES['file']['tmp_name'])) {
-    move_uploaded_file($_FILES['file']['tmp_name'], "./uploads/" . $_FILES['file']['name']);
+// if (isset($_FILES['file']['tmp_name'])) {
+//     move_uploaded_file($_FILES['file']['tmp_name'], "./uploads/" . $_FILES['file']['name']);
 
-    $query = $connect->query("INSERT INTO `image` (`photo`) VALUES ('{$_FILES['file']['name']}')");
-}
+//     $query = $connect->query("INSERT INTO `image` (`photo`) VALUES ('{$_FILES['file']['name']}')");
+// }
 
 
 
@@ -39,8 +39,8 @@ if (isset($_FILES['file']['tmp_name'])) {
     </form>
     <br><br>
     <?php
-    $table = $connect->query("SELECT * FROM `image`");
-    while ($row = mysqli_fetch_array($table)) {
+    // $table = $connect->query("SELECT * FROM `image`");
+    // while ($row = mysqli_fetch_array($table)) {
     ?>
         <table class="table">
         <tr>
@@ -50,8 +50,8 @@ if (isset($_FILES['file']['tmp_name'])) {
         </tr>
         </table>
     <?
-    }
+    // }
     ?>
 
 </body>
-</html>
+</html> -->

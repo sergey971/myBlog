@@ -1,5 +1,6 @@
-<? error_reporting(E_ALL)?>
+
 <html>
+    <title>Пост-путешествие</title>
 <body>
 
 <?php include_once "./parts/header.php";?>

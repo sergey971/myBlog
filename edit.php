@@ -8,8 +8,8 @@
         <h1 class="text-center">Авторизация</h1>
     </div>
     <form class="mt-4">
-        <input type="text" name="login" id="login" placeholder="Ввидите логин" class="form-control mt-2">
-        <input type="password" name="password" id="password" placeholder="Ввидите пароль" class="form-control mt-2">
+        <input type="text" name="login" id="login" placeholder="Ввидите логин" class="form-control mt-2 w-25 p-2 ">
+        <input type="password" name="password" id="password" placeholder="Ввидите пароль" class="form-control mt-2 w-25 p-2">
         <button class="btn btn-outline-primary mt-3" type="button" id="editBtn">Войти</button>
     </form>
 </main>

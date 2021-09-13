@@ -31,7 +31,7 @@
             success: function (data) {
                 if (data == 'ready') {
                     $('#errorSpan').hide()
-                    location.href = '/'
+                    location.href = '/travel.php'
                 } else {
                     $('#errorSpan').show()
                     $('#errorSpan').text(data)
